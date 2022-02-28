@@ -1,12 +1,10 @@
 // changed transActions to transactions - one word therefore camel case inappropriate
 function processTransactions(transactions) {
-     // change to one line and move to top also moved test directly into conditional statment.
+     // change to one line and move to top also moved test directly into conditional statement.
     if (transactions === undefined) throw new Error("Undefined collection of transactions");
 
-    // changed from global to local variable and renamed.
-    const processedTransactions = [];
-
-    const transactionsCount = {};
+    // changed from global to local variable and renamed then declare on same line.
+    const [processedTransactions, transactionsCount] = [[], {}];
 
     // changed - to declarative 
     transactions.forEach(item => transactionsCount[item] ? transactionsCount[item] += 1 : transactionsCount[item] = 1);
