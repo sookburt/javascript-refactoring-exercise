@@ -1,19 +1,18 @@
-var txr = [];
+// changed transActions to transactions - one world therefore camel case inappropriate
+function processTransactions(transactions) {
+     // change to one line and move to top
+    if (!validateTransactions(transactions)) throw new Error("Undefined collection of transactions");
 
-function processTransactions(transActions) {
-
-    txr = [];
-
-    if(!validateTransactions(transActions)) {
-        throw new Error("Undefined collection of transactions")
-    }
+    // changed from global to local variable
+    const txr = [];
 
     let txCount = {}
 
-    const numberOfTransactions = transActions.length;
+    const numberOfTransactions = transactions.length;
 
+    // TODO: change to declarative
     for(var i = 0; i < numberOfTransactions; i++) {
-        const transaction = transActions[i];
+        const transaction = transactions[i];
         txCount[transaction] ? txCount[transaction] += 1 : txCount[transaction] = 1;
     }
 
