@@ -11,7 +11,7 @@ function processTransactions(transactions) {
     // changed - to declarative 
     transactions.forEach(item => transactionsCount[item] ? transactionsCount[item] += 1 : transactionsCount[item] = 1);
 
-    // TODO: ? re-assign to new
+    // changed - re-assign to new
     const sortedTransactionsCount = sortByAmountThenName(transactionsCount);
 
     // Place them back in array for returning
@@ -23,16 +23,13 @@ function processTransactions(transactions) {
 
 function sortByAmountThenName(transactionsCount) {
 
-    // changed  - create function expression to use as a callback function for sort method 
-    //const sortingFunction = (itemOne, itemTwo) => transactionsCount[itemTwo] - transactionsCount[itemOne] || itemOne > itemTwo || -(itemOne < itemTwo);
+    let sortedResults = {};
 
-    // changed - using new sorting callback
+    // changed - using arrow function
     let sortedKeys = Object.keys(transactionsCount).sort((itemOne, itemTwo) => transactionsCount[itemTwo] - transactionsCount[itemOne] || itemOne > itemTwo || -(itemOne < itemTwo));
 
-    let sortedResults = {};
-    for(let objectKey of sortedKeys) {
-        sortedResults[objectKey] = transactionsCount[objectKey];
-    }
+    // changed - using forEach to iterate
+    sortedKeys.forEach(objectKey =>  sortedResults[objectKey] = transactionsCount[objectKey] );
 
     return sortedResults;
 }
