@@ -1,4 +1,4 @@
-// changed transActions to transactions - one world therefore camel case inappropriate
+// changed transActions to transactions - one word therefore camel case inappropriate
 function processTransactions(transactions) {
      // change to one line and move to top
     if (!validateTransactions(transactions)) throw new Error("Undefined collection of transactions");
@@ -8,6 +8,7 @@ function processTransactions(transactions) {
 
     let txCount = {}
 
+    // TODO: required?  if so, use directly.
     const numberOfTransactions = transactions.length;
 
     // TODO: change to declarative
@@ -16,6 +17,7 @@ function processTransactions(transactions) {
         txCount[transaction] ? txCount[transaction] += 1 : txCount[transaction] = 1;
     }
 
+    // TODO: ? re-assign to new
     txCount = sortByAmountThenName(txCount);
     
     // Place them back in array for returning
@@ -27,9 +29,12 @@ function processTransactions(transactions) {
 }
 
 function sortByAmountThenName(txCount) {
-    let sortedKeys = Object.keys(txCount).sort(function sortingFunction(itemOne, itemTwo) {
-        return  txCount[itemTwo] - txCount[itemOne] || itemOne > itemTwo || -(itemOne < itemTwo)}
-    );
+
+    // changed  - create function expression to use as a callback function for sort method 
+    const sortingFunction = (itemOne, itemTwo) => txCount[itemTwo] - txCount[itemOne] || itemOne > itemTwo || -(itemOne < itemTwo);
+
+    // changed - using new sorting callback
+    let sortedKeys = Object.keys(txCount).sort(sortingFunction);
 
     let sortedResults = {};
     for(let objectKey of sortedKeys) {
