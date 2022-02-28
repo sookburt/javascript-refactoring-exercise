@@ -1,7 +1,7 @@
 // changed transActions to transactions - one word therefore camel case inappropriate
 function processTransactions(transactions) {
-     // change to one line and move to top
-    if (!validateTransactions(transactions)) throw new Error("Undefined collection of transactions");
+     // change to one line and move to top also moved test directly into conditional statment.
+    if (transactions === undefined) throw new Error("Undefined collection of transactions");
 
     // changed from global to local variable
     const txr = [];
@@ -37,13 +37,5 @@ function sortByAmountThenName(txCount) {
     return sortedResults;
 }
 
-
-function validateTransactions(transactions) {
-    if(transactions === undefined) {
-        return false;
-    } 
-
-    return true;
-}
 
 module.exports = processTransactions;
