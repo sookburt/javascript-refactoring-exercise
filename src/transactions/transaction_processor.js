@@ -24,10 +24,10 @@ function processTransactions(transactions) {
 function sortByAmountThenName(transactionsCount) {
 
     // changed  - create function expression to use as a callback function for sort method 
-    const sortingFunction = (itemOne, itemTwo) => transactionsCount[itemTwo] - transactionsCount[itemOne] || itemOne > itemTwo || -(itemOne < itemTwo);
+    //const sortingFunction = (itemOne, itemTwo) => transactionsCount[itemTwo] - transactionsCount[itemOne] || itemOne > itemTwo || -(itemOne < itemTwo);
 
     // changed - using new sorting callback
-    let sortedKeys = Object.keys(transactionsCount).sort(sortingFunction);
+    let sortedKeys = Object.keys(transactionsCount).sort((itemOne, itemTwo) => transactionsCount[itemTwo] - transactionsCount[itemOne] || itemOne > itemTwo || -(itemOne < itemTwo));
 
     let sortedResults = {};
     for(let objectKey of sortedKeys) {
