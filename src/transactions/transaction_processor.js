@@ -15,9 +15,9 @@ const processTransactions = transactions => {
 
 const sortByAmount = transactionsCount => {
 
-    let sortedResults = {};
+    const sortedResults = {};
 
-    let sortedKeys = Object.keys(transactionsCount).sort((itemOne, itemTwo) => transactionsCount[itemTwo] - transactionsCount[itemOne]);
+    const sortedKeys = Object.keys(transactionsCount).sort((itemOne, itemTwo) => transactionsCount[itemTwo] - transactionsCount[itemOne]);
 
     sortedKeys.forEach(objectKey =>  sortedResults[objectKey] = transactionsCount[objectKey] );
 
