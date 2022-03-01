@@ -4,25 +4,24 @@ const processTransactions = transactions => {
 
     const [processedTransactions, transactionsCount] = [[], {}];
 
-    transactions.forEach(item => transactionsCount[item] ? transactionsCount[item]++ : transactionsCount[item] = 1);
+    transactions.sort().forEach(item => transactionsCount[item] ? transactionsCount[item]++ : transactionsCount[item] = 1);
 
-    const sortedTransactionsCount = sortByAmountThenName(transactionsCount);
+    const sortedTransactionsCount = sortByAmount(transactionsCount);
 
     Object.keys(sortedTransactionsCount).forEach((key, index) => processedTransactions[index] = `${key} ${sortedTransactionsCount[key]}`);
 
     return processedTransactions;
 }; 
 
-const sortByAmountThenName = transactionsCount => {
+const sortByAmount = transactionsCount => {
 
     let sortedResults = {};
 
-    let sortedKeys = Object.keys(transactionsCount).sort((itemOne, itemTwo) => transactionsCount[itemTwo] - transactionsCount[itemOne] || itemOne > itemTwo || -(itemOne < itemTwo));
+    let sortedKeys = Object.keys(transactionsCount).sort((itemOne, itemTwo) => transactionsCount[itemTwo] - transactionsCount[itemOne]);
 
     sortedKeys.forEach(objectKey =>  sortedResults[objectKey] = transactionsCount[objectKey] );
 
     return sortedResults;
 }
-
 
 module.exports = processTransactions;
