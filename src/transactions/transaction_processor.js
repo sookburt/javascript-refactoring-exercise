@@ -1,18 +1,19 @@
-function processTransactions(transactions) {
+const processTransactions = transactions => {
+    
     if (transactions === undefined) throw new Error("Undefined collection of transactions");
 
     const [processedTransactions, transactionsCount] = [[], {}];
 
-    transactions.forEach(item => transactionsCount[item] ? transactionsCount[item] += 1 : transactionsCount[item] = 1);
+    transactions.forEach(item => transactionsCount[item] ? transactionsCount[item]++ : transactionsCount[item] = 1);
 
     const sortedTransactionsCount = sortByAmountThenName(transactionsCount);
 
     Object.keys(sortedTransactionsCount).forEach((key, index) => processedTransactions[index] = `${key} ${sortedTransactionsCount[key]}`);
 
     return processedTransactions;
-}
+}; 
 
-function sortByAmountThenName(transactionsCount) {
+const sortByAmountThenName = transactionsCount => {
 
     let sortedResults = {};
 
